@@ -138,13 +138,13 @@
             color: #F8F4EB;
         }
 
-        /* Links: Prevent long URLs/DOIs from breaking brackets or overflowing horizontally */
+        /* Links & Bracketed Citations */
         a.monograph-link {
             color: var(--accent-oxblood);
             text-decoration: none;
             border-bottom: 1px dashed var(--accent-oxblood);
             transition: all 0.2s ease;
-            overflow-wrap: anywhere;
+            overflow-wrap: break-word;
             word-break: break-word;
         }
 
@@ -152,6 +152,18 @@
             color: var(--text-color);
             border-bottom-style: solid;
             background-color: rgba(122, 46, 46, 0.08);
+        }
+
+        /* Keeps [ and ] attached to the first and last characters of wrapped URLs */
+        .citation-bracket-group {
+            display: inline;
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+
+        .citation-bracket-group a.monograph-link {
+            overflow-wrap: anywhere;
+            word-break: normal;
         }
 
         /* Print Stylesheet */
@@ -358,18 +370,10 @@
 
             <ol class="list-decimal pl-5 space-y-4 text-sm sm:text-base text-left font-lora">
                 <li class="pl-1 leading-relaxed">
-                    <span class="font-bold accent-text">A. Omayed</span>, M. A. Iqbal and M. M. Bhuiyan, "A Multifaceted Approach to Bangla Speech Emotion Recognition Using Hybrid Feature Fusion and Dimensionality Reduction," <em>2025 28th International Conference on Computer and Information Technology (ICCIT)</em>, Cox's Bazar, Bangladesh, 2025, pp. 4753-4758, <span class="font-mono text-xs">doi: <a href="https://doi.org/10.1109/ICCIT68739.2025.11491393
-        
-        " target="_blank" rel="noopener noreferrer" class="monograph-link">10.1109/ICCIT68739.2025.11491393
-        
-        </span>
+                    <span class="font-bold accent-text">A. Omayed</span>, M. A. Iqbal and M. M. Bhuiyan, "A Multifaceted Approach to Bangla Speech Emotion Recognition Using Hybrid Feature Fusion and Dimensionality Reduction," <em>2025 28th International Conference on Computer and Information Technology (ICCIT)</em>, Cox's Bazar, Bangladesh, 2025, pp. 4753-4758, <span class="citation-bracket-group font-mono text-xs">doi: <a href="https://doi.org/10.1109/ICCIT68739.2025.11491393" target="_blank" rel="noopener noreferrer" class="monograph-link">10.1109/ICCIT68739.2025.11491393</a></span>
                 </li>
                 <li class="pl-1 leading-relaxed">
-                    <span class="font-bold accent-text">A. Omayed</span>, M. A. Iqbal and M. Alamgir Islam, "A Comparative Analysis of Hybrid Deep Learning Architectures for Detecting Schizophrenia from EEG Signals," <em>2025 IEEE 2nd International Conference on Computing, Applications and Systems (COMPAS)</em>, Kushtia, Bangladesh, 2025, pp. 1-6, <span class="font-mono text-xs">doi: <a href="https://doi.org/10.1109/COMPAS67506.2025.11381878
-        
-        " target="_blank" rel="noopener noreferrer" class="monograph-link">10.1109/COMPAS67506.2025.11381878
-        
-        </span>
+                    <span class="font-bold accent-text">A. Omayed</span>, M. A. Iqbal and M. Alamgir Islam, "A Comparative Analysis of Hybrid Deep Learning Architectures for Detecting Schizophrenia from EEG Signals," <em>2025 IEEE 2nd International Conference on Computing, Applications and Systems (COMPAS)</em>, Kushtia, Bangladesh, 2025, pp. 1-6, <span class="citation-bracket-group font-mono text-xs">doi: <a href="https://doi.org/10.1109/COMPAS67506.2025.11381878" target="_blank" rel="noopener noreferrer" class="monograph-link">10.1109/COMPAS67506.2025.11381878</a></span>
                 </li>
             </ol>
         </section>
@@ -385,18 +389,10 @@
 
             <ol class="list-decimal pl-5 space-y-4 text-sm sm:text-base text-left font-lora">
                 <li class="pl-1 leading-relaxed">
-                    Muhammad Alamgir Islam, <span class="font-bold accent-text">Abu Omayed</span>, Hossain Showrawardi et al. <em>Explainable AI for Small-Sample Macroeconomic Forecasting: A Structural Analysis of the Bangladeshi Economy</em>, 10 November 2026, PREPRINT (Version 1) available at Research Square [<a href="https://doi.org/10.21203/rs.3.rs-11679515/v1
-        
-        " target="_blank" rel="noopener noreferrer" class="monograph-link font-mono text-xs">https://doi.org/10.21203/rs.3.rs-11679515/v1
-        
-        ]
+                    Muhammad Alamgir Islam, <span class="font-bold accent-text">Abu Omayed</span>, Hossain Showrawardi et al. <em>Explainable AI for Small-Sample Macroeconomic Forecasting: A Structural Analysis of the Bangladeshi Economy</em>, 10 November 2026, PREPRINT (Version 1) available at Research Square <span class="citation-bracket-group font-mono text-xs">[<a href="https://doi.org/10.21203/rs.3.rs-11679515/v1" target="_blank" rel="noopener noreferrer" class="monograph-link">https://doi.org/10.21203/rs.3.rs-11679515/v1</a>]</span>
                 </li>
                 <li class="pl-1 leading-relaxed">
-                    <span class="font-bold accent-text">Abu Omayed</span>. <em>A Multifaceted Dimensionality Reduction Pipeline for Bangla Speech Emotion Recognition</em>, 12 May 2026, PREPRINT (Version 1) available at Research Square [<a href="https://doi.org/10.21203/rs.3.rs-9643770/v1
-        
-        " target="_blank" rel="noopener noreferrer" class="monograph-link font-mono text-xs">https://doi.org/10.21203/rs.3.rs-9643770/v1
-        
-        ]
+                    <span class="font-bold accent-text">Abu Omayed</span>. <em>A Multifaceted Dimensionality Reduction Pipeline for Bangla Speech Emotion Recognition</em>, 12 May 2026, PREPRINT (Version 1) available at Research Square <span class="citation-bracket-group font-mono text-xs">[<a href="https://doi.org/10.21203/rs.3.rs-9643770/v1" target="_blank" rel="noopener noreferrer" class="monograph-link">https://doi.org/10.21203/rs.3.rs-9643770/v1</a>]</span>
                 </li>
             </ol>
         </section>
@@ -445,7 +441,7 @@
                 <div class="font-playfair italic text-xs accent-text font-semibold mt-0.5">
                     International Islamic University Chittagong (IIUC), Chittagong, Bangladesh
                 </div>
-                <p class="text-xs sm:text-sm mt-2 text-justify">
+                <p class="text-xs sm:text-sm mt-2 text-left">
                     <span class="font-bold accent-text">Organized By:</span> R&D Committee of the EEE Club, Department of EEE
                 </p>
             </div>
@@ -467,7 +463,7 @@
                 <div class="font-playfair italic text-xs accent-text font-semibold mt-0.5">
                     Awarded "Best Student Researcher" at the University of Chittagong, Chittagong, Bangladesh
                 </div>
-                <p class="text-xs sm:text-sm mt-2 text-justify">
+                <p class="text-xs sm:text-sm mt-2 text-left">
                     <span class="font-bold accent-text">Organized By:</span> Jamal Nazrul Islam Research Center for Mathematics and Physical Sciences & Chittagong University Research and Higher Study Society (CURHS)
                 </p>
             </div>
