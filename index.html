@@ -138,12 +138,14 @@
             color: #F8F4EB;
         }
 
-        /* Links */
+        /* Links: Prevent long URLs/DOIs from breaking brackets or overflowing horizontally */
         a.monograph-link {
             color: var(--accent-oxblood);
             text-decoration: none;
             border-bottom: 1px dashed var(--accent-oxblood);
             transition: all 0.2s ease;
+            overflow-wrap: anywhere;
+            word-break: break-word;
         }
 
         a.monograph-link:hover {
@@ -354,12 +356,20 @@
                 <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. PB-03</span>
             </div>
 
-            <ol class="list-decimal pl-5 space-y-4 text-sm sm:text-base text-justify font-lora">
+            <ol class="list-decimal pl-5 space-y-4 text-sm sm:text-base text-left font-lora">
                 <li class="pl-1 leading-relaxed">
-                    <span class="font-bold accent-text">A. Omayed</span>, M. A. Iqbal and M. M. Bhuiyan, "A Multifaceted Approach to Bangla Speech Emotion Recognition Using Hybrid Feature Fusion and Dimensionality Reduction," <em>2025 28th International Conference on Computer and Information Technology (ICCIT)</em>, Cox's Bazar, Bangladesh, 2025, pp. 4753-4758, <span class="font-mono text-xs">doi: <a href="https://doi.org/10.1109/ICCIT68739.2025.11491393" target="_blank" rel="noopener noreferrer" class="monograph-link">10.1109/ICCIT68739.2025.11491393</a></span>
+                    <span class="font-bold accent-text">A. Omayed</span>, M. A. Iqbal and M. M. Bhuiyan, "A Multifaceted Approach to Bangla Speech Emotion Recognition Using Hybrid Feature Fusion and Dimensionality Reduction," <em>2025 28th International Conference on Computer and Information Technology (ICCIT)</em>, Cox's Bazar, Bangladesh, 2025, pp. 4753-4758, <span class="font-mono text-xs">doi: <a href="https://doi.org/10.1109/ICCIT68739.2025.11491393
+        
+        " target="_blank" rel="noopener noreferrer" class="monograph-link">10.1109/ICCIT68739.2025.11491393
+        
+        </span>
                 </li>
                 <li class="pl-1 leading-relaxed">
-                    <span class="font-bold accent-text">A. Omayed</span>, M. A. Iqbal and M. Alamgir Islam, "A Comparative Analysis of Hybrid Deep Learning Architectures for Detecting Schizophrenia from EEG Signals," <em>2025 IEEE 2nd International Conference on Computing, Applications and Systems (COMPAS)</em>, Kushtia, Bangladesh, 2025, pp. 1-6, <span class="font-mono text-xs">doi: <a href="https://doi.org/10.1109/COMPAS67506.2025.11381878" target="_blank" rel="noopener noreferrer" class="monograph-link">10.1109/COMPAS67506.2025.11381878</a></span>
+                    <span class="font-bold accent-text">A. Omayed</span>, M. A. Iqbal and M. Alamgir Islam, "A Comparative Analysis of Hybrid Deep Learning Architectures for Detecting Schizophrenia from EEG Signals," <em>2025 IEEE 2nd International Conference on Computing, Applications and Systems (COMPAS)</em>, Kushtia, Bangladesh, 2025, pp. 1-6, <span class="font-mono text-xs">doi: <a href="https://doi.org/10.1109/COMPAS67506.2025.11381878
+        
+        " target="_blank" rel="noopener noreferrer" class="monograph-link">10.1109/COMPAS67506.2025.11381878
+        
+        </span>
                 </li>
             </ol>
         </section>
@@ -373,12 +383,20 @@
                 <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. PR-04</span>
             </div>
 
-            <ol class="list-decimal pl-5 space-y-4 text-sm sm:text-base text-justify font-lora">
+            <ol class="list-decimal pl-5 space-y-4 text-sm sm:text-base text-left font-lora">
                 <li class="pl-1 leading-relaxed">
-                    Muhammad Alamgir Islam, <span class="font-bold accent-text">Abu Omayed</span>, Hossain Showrawardi et al. <em>Explainable AI for Small-Sample Macroeconomic Forecasting: A Structural Analysis of the Bangladeshi Economy</em>, 10 November 2026, PREPRINT (Version 1) available at Research Square [<a href="https://doi.org/10.21203/rs.3.rs-11679515/v1" target="_blank" rel="noopener noreferrer" class="monograph-link font-mono text-xs">https://doi.org/10.21203/rs.3.rs-11679515/v1</a>]
+                    Muhammad Alamgir Islam, <span class="font-bold accent-text">Abu Omayed</span>, Hossain Showrawardi et al. <em>Explainable AI for Small-Sample Macroeconomic Forecasting: A Structural Analysis of the Bangladeshi Economy</em>, 10 November 2026, PREPRINT (Version 1) available at Research Square [<a href="https://doi.org/10.21203/rs.3.rs-11679515/v1
+        
+        " target="_blank" rel="noopener noreferrer" class="monograph-link font-mono text-xs">https://doi.org/10.21203/rs.3.rs-11679515/v1
+        
+        ]
                 </li>
                 <li class="pl-1 leading-relaxed">
-                    <span class="font-bold accent-text">Abu Omayed</span>. <em>A Multifaceted Dimensionality Reduction Pipeline for Bangla Speech Emotion Recognition</em>, 12 May 2026, PREPRINT (Version 1) available at Research Square [<a href="https://doi.org/10.21203/rs.3.rs-9643770/v1" target="_blank" rel="noopener noreferrer" class="monograph-link font-mono text-xs">https://doi.org/10.21203/rs.3.rs-9643770/v1</a>]
+                    <span class="font-bold accent-text">Abu Omayed</span>. <em>A Multifaceted Dimensionality Reduction Pipeline for Bangla Speech Emotion Recognition</em>, 12 May 2026, PREPRINT (Version 1) available at Research Square [<a href="https://doi.org/10.21203/rs.3.rs-9643770/v1
+        
+        " target="_blank" rel="noopener noreferrer" class="monograph-link font-mono text-xs">https://doi.org/10.21203/rs.3.rs-9643770/v1
+        
+        ]
                 </li>
             </ol>
         </section>
@@ -392,7 +410,7 @@
                 <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. CN-05</span>
             </div>
 
-            <ol class="list-decimal pl-5 space-y-3.5 text-sm sm:text-base text-justify font-lora">
+            <ol class="list-decimal pl-5 space-y-3.5 text-sm sm:text-base text-left font-lora">
                 <li class="pl-1">
                     Oral Presentation, <span class="font-bold">A Large-Scale Multiclass Dataset and Comparative Analysis for Bangla Cyberbullying Detection</span>, appeared in the proceedings of the <em>29th International Conference on Computer and Information Technology (ICCIT 2026)</em>, held on 18–20 December 2026, Cox's Bazar – Bangladesh.
                 </li>
