@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-theme="ivory">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monograph</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Playfair Display, Lora, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        archival: {
+                            paper: '#F8F4EB',
+                            sepia: '#231F1D',
+                            oxblood: '#7A2E2E',
+                            oxbloodHover: '#983838',
+                            brass: '#B59A6D',
+                            brassLight: '#D9C8A9',
+                            muted: '#5A524C',
+                            border: '#D5C8B5',
+                            cardBg: '#FFFDF9'
+                        }
+                    },
+                    fontFamily: {
+                        playfair: ['Playfair Display', 'Georgia', 'serif'],
+                        lora: ['Lora', 'Georgia', 'serif'],
+                        mono: ['JetBrains Mono', 'Courier Prime', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Letterpress Monograph Styles */
+        :root {
+            --bg-color: #F8F4EB;
+            --text-color: #231F1D;
+            --card-bg: #FFFDF9;
+            --border-color: #B59A6D;
+            --accent-oxblood: #7A2E2E;
+            --muted-text: #5A524C;
+            --hairline-color: #D5C8B5;
+            --tag-bg: #F0E8D9;
+        }
+
+        /* Sepia Archive Theme */
+        html[data-theme="sepia"] {
+            --bg-color: #EFE4D3;
+            --text-color: #1F1915;
+            --card-bg: #F6EEE0;
+            --border-color: #9E7B4F;
+            --accent-oxblood: #6B2323;
+            --muted-text: #54473E;
+            --hairline-color: #CBB99F;
+            --tag-bg: #E4D3BC;
+        }
+
+        /* Night Ink Theme */
+        html[data-theme="night"] {
+            --bg-color: #181513;
+            --text-color: #E8E2D7;
+            --card-bg: #221D1A;
+            --border-color: #B59A6D;
+            --accent-oxblood: #D16D6D;
+            --muted-text: #ABA095;
+            --hairline-color: #3D352F;
+            --tag-bg: #2E2723;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Lora', Georgia, serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background-image: radial-gradient(var(--hairline-color) 0.6px, transparent 0.6px);
+            background-size: 24px 24px;
+        }
+
+        .monograph-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(35, 31, 29, 0.04);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Classic Letterpress Double Borders */
+        .double-border-box {
+            border: 3px double var(--border-color);
+            outline: 1px solid var(--hairline-color);
+            outline-offset: -7px;
+        }
+
+        /* Letterpress Drop Cap */
+        .letterpress-drop-cap::first-letter {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3.8rem;
+            float: left;
+            line-height: 0.8;
+            padding-right: 0.6rem;
+            padding-top: 0.15rem;
+            color: var(--accent-oxblood);
+            font-weight: 700;
+        }
+
+        /* Links */
+        a.monograph-link {
+            color: var(--accent-oxblood);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-oxblood);
+            transition: all 0.2s ease;
+        }
+
+        a.monograph-link:hover {
+            color: var(--text-color);
+            border-bottom-style: solid;
+            background-color: rgba(122, 46, 46, 0.08);
+        }
+
+        /* Print Stylesheet */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+                background-image: none !important;
+            }
+            .monograph-card {
+                box-shadow: none !important;
+                border: 1px solid #444 !important;
+                background: white !important;
+            }
+            a {
+                color: black !important;
+                text-decoration: underline !important;
+            }
+        }
+    </style>
+</head>
+<body class="py-4 sm:py-8 px-3 sm:px-6">
+
+    <!-- TOP UTILITY NAVIGATION BAR -->
+    <nav class="no-print fixed top-0 left-0 w-full bg-[#F8F4EB]/95 dark:bg-[#181513]/95 border-b border-[#B59A6D] backdrop-blur-md z-50 py-2.5 px-4 shadow-sm" id="topNav">
+        <div class="max-w-[820px] mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            
+            <div class="flex items-center gap-2">
+                <span class="text-[#7A2E2E] dark:text-[#D16D6D] text-base">❦</span>
+                <span class="font-semibold uppercase tracking-wider hidden sm:inline opacity-80">ARCHIVAL MONOGRAPH // BD-CTG-1998</span>
+            </div>
+
+            <!-- Interactive Tools: Search + Theme + Print -->
+            <div class="flex items-center gap-2 sm:gap-3 ml-auto">
+                <!-- Live Specimen Search Filter -->
+                <div class="relative">
+                    <input type="text" id="monographSearch" onkeyup="filterMonograph()" placeholder="Filter folio (e.g. Speech, EEG)..." class="w-36 sm:w-48 px-2.5 py-1 text-[11px] bg-transparent border border-[#B59A6D] focus:outline-none focus:border-[#7A2E2E] rounded-none">
+                </div>
+
+                <!-- Reading Mode Switcher -->
+                <div class="flex items-center border border-[#B59A6D] text-[10px] font-bold">
+                    <button onclick="setTheme('ivory')" class="px-2 py-1 border-r border-[#B59A6D] hover:bg-[#7A2E2E] hover:text-white transition" title="Ivory Cotton Paper">Ivory</button>
+                    <button onclick="setTheme('sepia')" class="px-2 py-1 border-r border-[#B59A6D] hover:bg-[#7A2E2E] hover:text-white transition" title="Warm Sepia Archive">Sepia</button>
+                    <button onclick="setTheme('night')" class="px-2 py-1 hover:bg-[#7A2E2E] hover:text-white transition" title="Night Ink">Night</button>
+                </div>
+
+                <!-- Print Folio Button -->
+                <button onclick="window.print()" class="px-2.5 py-1 bg-[#7A2E2E] text-[#F8F4EB] font-bold hover:bg-[#983838] transition flex items-center gap-1 border border-[#B59A6D]">
+                    <i class="fa-solid fa-print"></i>
+                    <span class="hidden sm:inline">Print</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SINGLE COLUMN CENTERED READING CONTAINER (MAX-WIDTH ~820px) -->
+    <main class="max-w-[820px] mx-auto mt-12 sm:mt-16 space-y-10">
+
+        <!-- HEADER FRONTISPIECE PLATE -->
+        <header class="monograph-card double-border-box p-6 sm:p-10 text-center relative overflow-hidden">
+            
+            <!-- Corner Botanical Ornaments -->
+            <div class="absolute top-2 left-2 text-[#B59A6D] text-sm pointer-events-none">⚜</div>
+            <div class="absolute top-2 right-2 text-[#B59A6D] text-sm pointer-events-none">⚜</div>
+            <div class="absolute bottom-2 left-2 text-[#B59A6D] text-sm pointer-events-none">⚜</div>
+            <div class="absolute bottom-2 right-2 text-[#B59A6D] text-sm pointer-events-none">⚜</div>
+
+            <!-- Top Header Rule -->
+            <div class="flex items-center justify-center gap-3 mb-5">
+                <div class="h-px w-16 sm:w-28 bg-[#B59A6D]"></div>
+                <span class="font-mono text-[11px] uppercase tracking-widest text-[#B59A6D] font-bold">ACADEMIC & RESEARCH CURRICULUM VITAE</span>
+                <div class="h-px w-16 sm:w-28 bg-[#B59A6D]"></div>
+            </div>
+
+            <!-- Vintage Framed Portrait Image with Fallback -->
+            <div class="relative inline-block mb-4">
+                <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full p-1 bg-gradient-to-b from-[#B59A6D] via-[#7A2E2E] to-[#B59A6D] shadow-md mx-auto">
+                    <div class="w-full h-full rounded-full overflow-hidden border-2 border-[#231F1D] bg-[#F0E8D9] flex items-center justify-center">
+                        <img id="portraitImg" src="omayed.jpeg" alt="Abu Omayed" class="w-full h-full object-cover sepia-[0.2] contrast-[1.05] hover:sepia-0 transition duration-500" onerror="handlePortraitError()">
+                        
+                        <!-- Engraved Monogram Fallback -->
+                        <div id="monogramFallback" class="hidden flex-col items-center justify-center w-full h-full bg-[#F0E8D9] text-[#231F1D] rounded-full">
+                            <span class="font-playfair text-3xl font-bold text-[#7A2E2E]">AO</span>
+                            <span class="font-mono text-[8px] tracking-widest text-[#B59A6D] uppercase">SEAL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Name and Title -->
+            <h1 class="font-playfair text-3xl sm:text-5xl font-bold tracking-tight mb-2">
+                Abu Omayed
+            </h1>
+            <p class="font-playfair italic text-lg sm:text-2xl text-[#7A2E2E] font-semibold mb-1">
+                Research Supervisor, ResearchBuddy AI
+            </p>
+            <p class="font-mono text-xs opacity-75 uppercase tracking-widest mb-6">
+                Chittagong, Bangladesh • Natural Language Processing & Explainable AI
+            </p>
+
+            <!-- Decorative Horizontal Divider with Central Fleuron -->
+            <div class="flex items-center justify-center gap-3 text-[#B59A6D] my-5">
+                <span class="h-px w-24 bg-[#B59A6D]/60"></span>
+                <span class="text-base">❦</span>
+                <span class="h-px w-24 bg-[#B59A6D]/60"></span>
+            </div>
+
+            <!-- Complete 8 Academic Links Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-4 font-mono text-xs text-left max-w-2xl mx-auto border-t border-b border-[#B59A6D]/40 py-4">
+                <div class="flex items-center gap-2">
+                    <i class="fa-regular fa-envelope text-[#7A2E2E] w-4 text-center"></i>
+                    <a href="mailto:abuomayed@gmail.com" class="monograph-link truncate">abuomayed@gmail.com</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-brands fa-linkedin text-[#7A2E2E] w-4 text-center"></i>
+                    <a href="https://www.linkedin.com/in/abu-omayed" target="_blank" class="monograph-link truncate">linkedin.com/in/abu-omayed</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-brands fa-youtube text-[#7A2E2E] w-4 text-center"></i>
+                    <a href="https://www.youtube.com/@Statistics-ML-DL-NLP" target="_blank" class="monograph-link truncate">YouTube Channel</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-brands fa-researchgate text-[#7A2E2E] w-4 text-center"></i>
+                    <a href="https://www.researchgate.net/profile/Abu-Omayed-2" target="_blank" class="monograph-link truncate">ResearchGate Profile</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-[#7A2E2E] w-4 text-center"></i>
+                    <a href="https://scholar.google.com/citations?user=dsu5FNMAAAAJ&hl" target="_blank" class="monograph-link truncate">Google Scholar</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-brands fa-orcid text-[#7A2E2E] w-4 text-center"></i>
+                    <a href="https://orcid.org/0009-0006-1607-7979" target="_blank" class="monograph-link truncate">ORCID: 0009-0006-1607-7979</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-brands fa-github text-[#7A2E2E] w-4 text-center"></i>
+                    <a href="https://github.com/AbuOmayed" target="_blank" class="monograph-link truncate">github.com/AbuOmayed</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-robot text-[#7A2E2E] w-4 text-center"></i>
+                    <a href="https://huggingface.co/omayed" target="_blank" class="monograph-link truncate">huggingface.co/omayed</a>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- SECTION I: ABOUT ME (NATURALIST ABSTRACT) -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-4">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">I.</span> Naturalist & Academic Abstract
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. AB-01</span>
+            </div>
+            <p class="letterpress-drop-cap text-base sm:text-lg leading-relaxed text-justify font-lora">
+                I am an AI researcher leading research in Natural Language Processing (NLP) and Explainable AI (XAI) at ResearchBuddy AI.
+            </p>
+        </section>
+
+        <!-- SECTION II: EDUCATION -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-6">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">II.</span> Academic Lineage & Degrees
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. ED-02</span>
+            </div>
+
+            <div class="space-y-6">
+                <!-- MS Degree -->
+                <div class="border-l-2 border-[#7A2E2E] pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-playfair text-lg sm:text-xl font-bold">Master of Science in Statistics</h3>
+                        <span class="font-mono text-xs font-bold text-[#7A2E2E]">May 2022 | December 2023</span>
+                    </div>
+                    <div class="font-playfair italic text-sm text-[#7A2E2E] font-semibold mt-0.5">
+                        University of Chittagong, Chittagong, Bangladesh
+                    </div>
+                </div>
+
+                <!-- BS Degree -->
+                <div class="border-l-2 border-[#7A2E2E] pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-playfair text-lg sm:text-xl font-bold">Bachelor of Science in Statistics</h3>
+                        <span class="font-mono text-xs font-bold text-[#7A2E2E]">February 2017 | March 2022</span>
+                    </div>
+                    <div class="font-playfair italic text-sm text-[#7A2E2E] font-semibold mt-0.5">
+                        University of Chittagong, Chittagong, Bangladesh
+                    </div>
+                </div>
+
+                <!-- HSC -->
+                <div class="border-l-2 border-[#B59A6D] pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-playfair text-base sm:text-lg font-bold">Higher Secondary School Certificate (HSC), Science</h3>
+                        <span class="font-mono text-xs text-[#B59A6D]">June 2014 | August 2016</span>
+                    </div>
+                    <div class="font-playfair italic text-xs opacity-80">
+                        Patia Govt. College, Chittagong, Bangladesh
+                    </div>
+                </div>
+
+                <!-- SSC -->
+                <div class="border-l-2 border-[#B59A6D] pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-playfair text-base sm:text-lg font-bold">Secondary School Certificate (SSC), Science</h3>
+                        <span class="font-mono text-xs text-[#B59A6D]">January 2010 | April 2014</span>
+                    </div>
+                    <div class="font-playfair italic text-xs opacity-80">
+                        Barkal S.Z High School, Chittagong, Bangladesh
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION III: EXPERIENCE (STYLED IDENTICALLY TO ACADEMIC LINEAGE & DEGREES) -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-6">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">III.</span> Field Appointments & Duties
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. EX-03</span>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Appointment 1 -->
+                <div class="border-l-2 border-[#7A2E2E] pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-playfair text-lg sm:text-xl font-bold">Research Supervisor</h3>
+                        <span class="font-mono text-xs font-bold text-[#7A2E2E]">April 2025 | Present</span>
+                    </div>
+                    <div class="font-playfair italic text-sm text-[#7A2E2E] font-semibold mt-0.5">
+                        ResearchBuddy AI, Chittagong, Bangladesh
+                    </div>
+                </div>
+
+                <!-- Appointment 2 -->
+                <div class="border-l-2 border-[#7A2E2E] pl-4 py-1">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+                        <h3 class="font-playfair text-lg sm:text-xl font-bold">Research Assistant</h3>
+                        <span class="font-mono text-xs font-bold text-[#7A2E2E]">August 2023 | March 2025</span>
+                    </div>
+                    <div class="font-playfair italic text-sm text-[#7A2E2E] font-semibold mt-0.5">
+                        University of Chittagong, Chittagong, Bangladesh
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION IV: PUBLICATIONS -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-4">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">IV.</span> Published Transactions
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. PB-04</span>
+            </div>
+
+            <ol class="list-decimal pl-5 space-y-4 text-sm sm:text-base text-justify font-lora">
+                <li class="pl-1 leading-relaxed">
+                    <span class="font-bold text-[#7A2E2E]">A. Omayed</span>, M. A. Iqbal and M. M. Bhuiyan, "A Multifaceted Approach to Bangla Speech Emotion Recognition Using Hybrid Feature Fusion and Dimensionality Reduction," <em>2025 28th International Conference on Computer and Information Technology (ICCIT)</em>, Cox's Bazar, Bangladesh, 2025, pp. 4753-4758, <span class="font-mono text-xs">doi: <a href="https://doi.org/10.1109/ICCIT68739.2025.11491393" target="_blank" class="monograph-link">10.1109/ICCIT68739.2025.11491393</a></span>
+                </li>
+                <li class="pl-1 leading-relaxed">
+                    <span class="font-bold text-[#7A2E2E]">A. Omayed</span>, M. A. Iqbal and M. Alamgir Islam, "A Comparative Analysis of Hybrid Deep Learning Architectures for Detecting Schizophrenia from EEG Signals," <em>2025 IEEE 2nd International Conference on Computing, Applications and Systems (COMPAS)</em>, Kushtia, Bangladesh, 2025, pp. 1-6, <span class="font-mono text-xs">doi: <a href="https://doi.org/10.1109/COMPAS67506.2025.11381878" target="_blank" class="monograph-link">10.1109/COMPAS67506.2025.11381878</a></span>
+                </li>
+            </ol>
+        </section>
+
+        <!-- SECTION V: PREPRINTS -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-4">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">V.</span> Archival Preprints
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. PR-05</span>
+            </div>
+
+            <ol class="list-decimal pl-5 space-y-4 text-sm sm:text-base text-justify font-lora">
+                <li class="pl-1 leading-relaxed">
+                    Muhammad Alamgir Islam, <span class="font-bold text-[#7A2E2E]">Abu Omayed</span>, Hossain Showrawardi et al. <em>Explainable AI for Small-Sample Macroeconomic Forecasting: A Structural Analysis of the Bangladeshi Economy</em>, 10 November 2026, PREPRINT (Version 1) available at Research Square [<a href="https://doi.org/10.21203/rs.3.rs-11679515/v1" target="_blank" class="monograph-link font-mono text-xs">https://doi.org/10.21203/rs.3.rs-11679515/v1</a>]
+                </li>
+                <li class="pl-1 leading-relaxed">
+                    <span class="font-bold text-[#7A2E2E]">Abu Omayed</span>. <em>A Multifaceted Dimensionality Reduction Pipeline for Bangla Speech Emotion Recognition</em>, 12 May 2026, PREPRINT (Version 1) available at Research Square [<a href="https://doi.org/10.21203/rs.3.rs-9643770/v1" target="_blank" class="monograph-link font-mono text-xs">https://doi.org/10.21203/rs.3.rs-9643770/v1</a>]
+                </li>
+            </ol>
+        </section>
+
+        <!-- SECTION VI: PROCEEDINGS -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-4">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">VI.</span> Society Proceedings & Discourses
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. CN-06</span>
+            </div>
+
+            <ol class="list-decimal pl-5 space-y-3.5 text-sm sm:text-base text-justify font-lora">
+                <li class="pl-1">
+                    Oral Presentation, <span class="font-bold">A Large-Scale Multiclass Dataset and Comparative Analysis for Bangla Cyberbullying Detection</span>, appeared in the proceedings of the <em>29th International Conference on Computer and Information Technology (ICCIT 2026)</em>, held on 18–20 December 2026, Cox's Bazar – Bangladesh.
+                </li>
+                <li class="pl-1">
+                    Oral Presentation, <span class="font-bold">Automated Multi-Class Semantic Segmentation of Cardiac MRI using U-Net for Left Ventricular Epicardium and Endocardium Delineation</span>, appeared in the proceedings of the <em>6th International Conference on Trends in Electronics and Health Informatics (TEHI 2026)</em>, held on 27–28 December 2026, Chattogram – Bangladesh.
+                </li>
+                <li class="pl-1">
+                    Oral Presentation, <span class="font-bold">A Multifaceted Approach to Bangla Speech Emotion Recognition Using Hybrid Feature Fusion and Dimensionality Reduction</span>, appeared in the proceedings of the <em>28th International Conference on Computer and Information Technology (ICCIT 2025)</em>, held on 19–21 December 2025, Cox's Bazar – Bangladesh.
+                </li>
+                <li class="pl-1">
+                    Oral Presentation, <span class="font-bold">A Data-Driven Approach to Forecasting Crop Transplantation Periods in Bangladesh Using Machine Learning Model</span>, appeared in the proceedings of the <em>24th International Mathematics Conference</em>, held on 18–19 December 2025, Chittagong – Bangladesh.
+                </li>
+                <li class="pl-1">
+                    Oral Presentation, <span class="font-bold">A Comparative Analysis of Hybrid Deep Learning Architectures for Detecting Schizophrenia from EEG Signals</span>, appeared in the proceedings of the <em>IEEE 2nd International Conference on Computing, Applications and Systems (COMPAS 2025)</em>, held on 16–17 October 2025, Kushtia – Bangladesh.
+                </li>
+            </ol>
+        </section>
+
+        <!-- SECTION VII: SEMINARS -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-4">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">VII.</span> Invited Discourses & Seminars
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. SM-07</span>
+            </div>
+
+            <div class="border border-[#B59A6D]/50 p-4 sm:p-5 bg-black/5 dark:bg-white/5">
+                <div class="font-mono text-xs font-bold text-[#7A2E2E] uppercase mb-1">INVITED DISCOURSE</div>
+                <h3 class="font-playfair text-lg font-bold">Guest Speaker: Research Paper Writing Seminar</h3>
+                <div class="font-mono text-xs text-[#B59A6D]">26 October 2026</div>
+                <div class="font-playfair italic text-xs text-[#7A2E2E] font-semibold mt-0.5">
+                    International Islamic University Chittagong (IIUC), Chittagong, Bangladesh
+                </div>
+                <p class="text-xs sm:text-sm mt-2 text-justify">
+                    <span class="font-bold text-[#7A2E2E]">Organized By:</span> R&D Committee of the EEE Club, Department of EEE
+                </p>
+                <p class="text-xs sm:text-sm mt-2 text-justify">
+                    Delivered an invited lecture as a resource person, offering strategic guidance on NLP research methodologies and academic paper writing.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION VIII: AWARDS -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-4">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">VIII.</span> Society Laurels & Awards
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. AW-08</span>
+            </div>
+
+            <div class="border border-[#B59A6D]/50 p-4 sm:p-5 bg-black/5 dark:bg-white/5">
+                <div class="font-mono text-xs font-bold text-[#7A2E2E] uppercase mb-1">HONOR ROLL</div>
+                <h3 class="font-playfair text-lg font-bold">Jamal Nazrul Islam Research Excellence Award</h3>
+                <div class="font-mono text-xs text-[#B59A6D]">26 Feb 2025</div>
+                <div class="font-playfair italic text-xs text-[#7A2E2E] font-semibold mt-0.5">
+                    Awarded "Best Student Researcher" at the University of Chittagong, Chittagong, Bangladesh
+                </div>
+                <p class="text-xs sm:text-sm mt-2 text-justify">
+                    <span class="font-bold text-[#7A2E2E]">Organized By:</span> Jamal Nazrul Islam Research Center for Mathematics and Physical Sciences & Chittagong University Research and Higher Study Society (CURHS)
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION IX: GUILD CREDENTIALS & ACADEMIC RECOGNITION -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-4">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">IX.</span> Guild Credentials & Recognition
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. CR-09</span>
+            </div>
+
+            <div class="space-y-3 font-lora text-sm">
+                <div class="border-b border-[#B59A6D]/30 pb-2.5">
+                    <div class="font-playfair font-bold text-base text-[#7A2E2E]">Certificate of Appreciation</div>
+                    <div class="font-mono text-xs opacity-80">Dec 2025 | IEEE Bangladesh Section</div>
+                    <div class="font-mono text-xs text-[#B59A6D]">Credential ID: Paper ID 1904</div>
+                </div>
+
+                <div class="border-b border-[#B59A6D]/30 pb-2.5">
+                    <div class="font-playfair font-bold text-base text-[#7A2E2E]">Certificate of Presentation</div>
+                    <div class="font-mono text-xs opacity-80">Oct 2025 | IEEE Computer Society</div>
+                    <div class="font-mono text-xs text-[#B59A6D]">Credential ID: Paper ID 151</div>
+                </div>
+
+                <div>
+                    <div class="font-playfair font-bold text-base text-[#7A2E2E]">Certificate of Participation</div>
+                    <div class="font-mono text-xs opacity-80">Dec 2025 | University of Chittagong</div>
+                    <div class="font-mono text-xs text-[#B59A6D]">Credential ID: Paper ID 155</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION X: CERTIFICATIONS & VOLUNTEERING -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-4">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">X.</span> Certifications & Volunteering
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. CV-10</span>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <div class="font-mono text-xs font-bold text-[#7A2E2E] uppercase">CERTIFICATION</div>
+                    <p class="font-playfair font-bold text-base mt-0.5">Data Analysis</p>
+                    <p class="font-playfair italic text-xs opacity-80">Department of Statistics, University of Chittagong, Chittagong, Bangladesh</p>
+                </div>
+
+                <div class="pt-3 border-t border-[#B59A6D]/30">
+                    <div class="font-mono text-xs font-bold text-[#7A2E2E] uppercase">VOLUNTEERING</div>
+                    <p class="font-playfair font-bold text-base mt-0.5">Bangladesh Olympiad on Astronomy and Astrophysics (BDOAA)</p>
+                    <p class="font-playfair italic text-xs opacity-80">Volunteer (2019) | Chittagong, Bangladesh</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION XI: TONGUES & LANGUAGES -->
+        <section class="monograph-section monograph-card p-6 sm:p-8 rounded-none">
+            <div class="flex items-center justify-between border-b border-[#B59A6D] pb-2 mb-4">
+                <h2 class="font-playfair text-xl sm:text-2xl font-bold uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-[#7A2E2E]">XI.</span> Tongues & Languages
+                </h2>
+                <span class="font-mono text-[10px] text-[#B59A6D] uppercase">CATALOG NO. LG-11</span>
+            </div>
+
+            <div class="font-mono text-xs sm:text-sm space-y-1.5">
+                <p><span class="font-bold text-[#7A2E2E]">Bengali:</span> Native</p>
+                <p><span class="font-bold text-[#7A2E2E]">English:</span> Independent User</p>
+            </div>
+        </section>
+
+        <!-- FOOTER COLOPHON -->
+        <footer class="monograph-card double-border-box p-6 text-center font-mono text-xs opacity-80 space-y-1.5">
+            <div class="text-[#B59A6D] text-base">⚜ ❦ ⚜</div>
+            <p class="font-bold text-[#7A2E2E] uppercase tracking-widest">
+                VERIFIED BY THE ACADEMIC HERBARIUM // ABU OMAYED
+            </p>
+            <p class="text-[11px]">ResearchBuddy AI • Chittagong, Bangladesh • Archival Record Sealed 2026</p>
+        </footer>
+
+    </main>
+
+    <!-- Ascend to Top Floating Seal Button -->
+    <a href="#" class="no-print fixed bottom-6 right-6 w-10 h-10 bg-[#7A2E2E] text-[#F8F4EB] rounded-full flex items-center justify-center text-sm shadow-xl hover:scale-110 transition border border-[#B59A6D]" title="Ascend to Header">
+        <i class="fa-solid fa-angle-up"></i>
+    </a>
+
+    <!-- Interactive Scripting -->
+    <script>
+        // Image error handler for vintage portrait fallback
+        function handlePortraitError() {
+            document.getElementById('portraitImg').style.display = 'none';
+            document.getElementById('monogramFallback').classList.remove('hidden');
+            document.getElementById('monogramFallback').classList.add('flex');
+        }
+
+        // Live Monograph Filter Search
+        function filterMonograph() {
+            const query = document.getElementById('monographSearch').value.toLowerCase();
+            const sections = document.querySelectorAll('.monograph-section');
+
+            sections.forEach(section => {
+                const text = section.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // Theme Switcher (Ivory / Sepia / Night)
+        function setTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('monographTheme', themeName);
+        }
+
+        // Load saved theme preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('monographTheme') || 'ivory';
+            setTheme(savedTheme);
+        });
+    </script>
+</body>
+</html>
